@@ -16,8 +16,7 @@ class Stack:
         if (len(self.stack) <= self.size) and len(self.stack) > 0:    
             self.stack.pop()
             self.top-=1
-
-        if len(self.stack) == 0:
+        elif len(self.stack) == 0:
             print("Cannot remove element from an empty stack")
 
     def printStack(self):
