@@ -1,9 +1,9 @@
 class Stack:
 
-    def __init__(self, stack, size, top):
-        self.stack = stack
+    def __init__(self, size,):
+        self.stack = []
         self.size = size
-        self.top = top
+        self.top = -1
 
     def pushElement(self, value):
         if len(self.stack) < self.size:
@@ -27,7 +27,7 @@ class Stack:
     
 
 if __name__ == "__main__":
-    Stack1 = Stack([],4,-1)
+    Stack1 = Stack(4)
     Stack1.pushElement(3)
     Stack1.pushElement(3)
     Stack1.pushElement(3)
