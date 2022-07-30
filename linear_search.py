@@ -1,25 +1,35 @@
 def takeInput(array):
+	#this function takes input from the user and stores it in the array
     nums = int(input("Enter the number of elements in the array: "))
     for i in range(nums):
-        elements = int(input())
-        array.append(elements)
-    return array
+        element = int(input())
+        array.append(element)
 
-def printArray(array):
+
+def display(array):
+	#this function is responsible for printing the array
     print(array)
 
-def findElement(array, toBeFound):
-    notPresent = True
+
+def searchElement(array):
+	#this function is responsible for the linear sort mechanism
+    toBeSearched = int(input("Enter the element to be found: "))
+    indexOfElement = 0
+    isFound = False
     for i in range(len(array)):
-        if (array[i] == toBeFound):
-            notPresent = False
+        if toBeSearched == array[i]:
+            indexOfElement = i
+            isFound = True
             break
 
-    print("The element has been found at index:" , i) if notPresent == False else print("The element is not present in the array")
+    if isFound:
+        print("The element has been found at index", indexOfElement)
+    else:
+        print("The element is not present in the array")
 
 
-array1 = []
-takeInput(array1)
-printArray(array1)
-findElement(array1, 40)
-
+if __name__ == "__main__":
+    array = []
+    takeInput(array)
+    display(array)
+    searchElement(array)
