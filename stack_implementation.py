@@ -13,7 +13,7 @@ class Stack:
         # this function prints the stack
         print(self.array[::-1])
 
-    def getTop(self):
+    def get_top(self):
         # this gives the value to top at any given point in the program
         print("The value of top is",self.top)
 
@@ -50,6 +50,6 @@ if __name__ == "__main__":
         elif checker == 3:
             Stack1.display()
         elif checker == 4:
-            Stack1.getTop()
+            Stack1.get_top()
         elif checker == 0:
             break
