@@ -1,3 +1,4 @@
+
 class Stack:
 # making the stack class in which the operation takes place
     def __init__(self, size: int):
@@ -21,6 +22,7 @@ class Stack:
         if len(self.array) < self.size:
             self.top += 1
             self.array.append(value)
+            print("The value that is pushed is:" , value)
         else:
             return "The array cannot exceed its size, hence element cannot be added"
 
@@ -66,6 +68,7 @@ class Stack:
                     # we need to remove all elements in the bracket i.e. remove the elements till u reach the
                     # opening bracket
                     popped_element = self.pop()
+                    print("The popped element is: " , popped_element)
                     self.result.append(popped_element)
 
             else: 
