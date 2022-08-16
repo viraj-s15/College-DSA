@@ -1,5 +1,5 @@
 #include <iostream>
-// we will be using vectos for this because vectors can dynamically
+// we will be using vectors for this because vectors can dynamically
 // allocate memory and can improve the overrall performance of the code
 #include <vector>
 using namespace std;
