@@ -1,16 +1,20 @@
 #include <iostream>
+// All of the code below will be explained in the comments 
 #include <vector>
+// we are using vector as it can be expanded indefinitely and is more efficient than a pointer array
 using namespace std;
 
 class Queue
+// creating a custom data type called queue, all the functions related to queue will be present here
 {
+	// giving the queue attributes
     int front;
     int rear;
     vector<int> queue;
     int size;
 
 public:
-
+	// this is a contructor that is used to initalise the value of front and rear
    Queue(int size)
    {
        this->size = size;
@@ -19,6 +23,7 @@ public:
        this->rear = -1;
    }
 
+	// all function declarations are present here
     void insert();
     void remove();
     void display();
@@ -28,8 +33,9 @@ public:
 };
 
 void Queue::insert()
+// this function is used to insert a value into the queue
 {
-	
+	// checking whether the queue is full or not
     if ((this->rear == this->size - 1))
     {
         cout << "The queue is full" << endl;
@@ -40,7 +46,9 @@ void Queue::insert()
         cout << "Enter a value to be inserted" << endl;
         cin >> value;
         this->queue.push_back(value);
+		// front now becomes 0 as there is an element in the queue
         this->front = 0;
+		// rear is incremented to match the last element of the queue
         this->rear++;
     }
 }
@@ -48,15 +56,18 @@ void Queue::insert()
 
 void Queue::remove()
 {
+	// checking whether the queue is empty 
     if (this->front == -1 )
     {
         cout << "The queue is empty" << endl;
     }
     else
     {
+		// removing the first element from the queue
         this->queue.erase(this->queue.begin());
         cout << "The first element has been removed" << endl;
 		this->rear--;
+		// if the first element of the queue is also removed, we reset front to -1
 		if (this->queue.size() == 0)
 		{
 			this->front = -1;
@@ -66,7 +77,8 @@ void Queue::remove()
 
 
 void Queue::display()
-{
+{	
+	// checking whether the queue is empty
     if (isEmpty())
 	{
 		cout << "The queue is empty" << endl;
@@ -74,6 +86,7 @@ void Queue::display()
 	else
 	{
 		cout << "The elements in the queue: ";
+		// using a range based loop
 		for (auto &element : this->queue)
 		{
 			cout << element << " ";
@@ -84,6 +97,7 @@ void Queue::display()
 
 bool Queue::isEmpty()
 {
+	// helper function that checks if the queue is empty
     if (this->front < 0 || this->front == this->rear)
     {
         return true;
@@ -93,19 +107,21 @@ bool Queue::isEmpty()
 
 
 void Queue::getFront()
+// gets the front of the queue
 {
     cout << "The first element in the queue is: " << this->queue[this->front] << endl;
 }
 
 void Queue::getRear()
+// gets the rear of the queue
 {
     cout << "The last element in the queue is: " << this->queue[this->rear] << endl;
 }
 
 int main()
+//driver code
 {
 	int size,choice;
-	cout << "This program is written by Viraj Shah 21BCE0577" << endl;
 	cout << "Enter the size of the queue: " << endl;
 	cin >> size;
     Queue q1(size);
