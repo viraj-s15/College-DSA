@@ -36,6 +36,7 @@ class LinkedList
 		void deleteAt(int position);
 		void deleteAtEnd();
 		void displayList();
+		void searchElement();
 };		
 
 		
@@ -222,7 +223,45 @@ void LinkedList::displayList()
 	}
 }	
 
+void LinkedList::searchElement()
+// this function responsible for searching elements in the linked list
+{
+	int index;
+	int toBeFound,count = 0;
+	// decalaring the index, toBeFound and count as temporary variables
+	cout << "Enter the value to be searched for: " << endl;
+	cin >> toBeFound;
+	bool isFound = false;	
+	Node *temp = head;
+	while(temp != NULL)
+	// while the value of the node is not null i.e. the list has not ended
+	{
+		if (head->value == toBeFound)
+		// if the first value is null, we directly return the first index 
+		{
+			isFound = true;
+			count = 0;
+			break;
+		}
+		if (temp->value != toBeFound)
+		// increment count till we dont reach the element
+			{
+				count++;
+				temp = temp->next;
+			}
 
+		if (temp->value == toBeFound)
+		// once we do reach the element, we can then stop the code and set count as index
+		// we can then print the appropriate statement
+		{
+			isFound = true;
+			index = count;
+			break;
+		}
+	}
+	isFound ? cout << "The element has been found at index " << count << endl : cout << "The element has not been found" << endl;
+
+}
 int main() 
 {
 	
@@ -233,6 +272,7 @@ int main()
 	cout << "5) Delete at the end of the linked list" << endl;
 	cout << "6) Delete at any index of the linked list" << endl;
 	cout << "7) Display the list" << endl;
+	cout << "8) Search for element in the linked list" << endl;
 	cout << "0) Exit the program" << endl;
 	
 	LinkedList l1;
@@ -277,6 +317,9 @@ int main()
 				continue;
 			case 7:
 				l1.displayList();
+				continue;
+			case 8:
+				l1.searchElement();
 				continue;
 		}
 		break;
