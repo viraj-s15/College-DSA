@@ -18,23 +18,7 @@ void swap(int* a, int* b)
     *a = *b; 
     *b = t; 
 } 
-   
-int partition (vector<int>& array, int left, int right) 
-{ 
-    int pivot = array[right];    
-    int i = (left - 1);   
-   
-    for (int j = left; j <= right- 1; j++) 
-    { 
-        if (array[j] <= pivot) 
-        { 
-            i++;  
-            swap(&array[i], &array[j]); 
-        } 
-    } 
-    swap(&array[i + 1], &array[right]); 
-    return (i + 1); 
-} 
+
    
 void insertionSort (vector<int>& array)
 {
