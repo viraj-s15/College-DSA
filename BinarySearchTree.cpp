@@ -1,18 +1,21 @@
 #include <iostream>
 using namespace std;
 
+// creating a class to manage a node of the bst
 class Node {
     public:
     int data;
     Node *left;
     Node *right;
     
+    // this is the default constrcutor, we give it some default data when initialising without any parameters
     Node() {
         data = -1;
         left = NULL;
         right = NULL;
     }
 
+    // the parameterised constructor
     Node(int data) {
         this->data = data;
         left = NULL;
@@ -20,6 +23,7 @@ class Node {
     }
 };
 
+// creating the binary search tree or rather the root of the tree
 Node *createRoot(Node *root, int data) {
         root->data = data;
         root->left = root->right = NULL;
@@ -27,11 +31,13 @@ Node *createRoot(Node *root, int data) {
         return root;
 }
 
+// insertion of any node in the tree
 Node *insertNode(Node *root,int data) {
     if (root == NULL) {
         Node *newNode = new Node(data);
         return newNode;
     } 
+    // checking basic bst conditions
     if (data > root->data) {
         root->right = insertNode(root->right,data);  
     } else {
@@ -40,6 +46,7 @@ Node *insertNode(Node *root,int data) {
     return root;
 }
 
+// getting the smallest value in the tree
 Node *minValue(Node *root) {
     Node *temp = root;
     while(temp && temp->left != NULL) {
@@ -48,6 +55,7 @@ Node *minValue(Node *root) {
     return temp;
 }
 
+// getting the largest value in the tree
 Node *maxValue(Node *root) {
     Node *temp = root;
     while(temp && temp->right != NULL) {
@@ -56,65 +64,70 @@ Node *maxValue(Node *root) {
     return temp;
 }
 
-Node *deleteNode(Node *root, int data) {
-    if (root == NULL) return root;
-    if (data > root->data) {
-        root->right = deleteNode(root->right,data);
-    } else if (data < root->data) {
-        root->left = deleteNode(root->left,data);
-    } else {
-        if (root->right == NULL) {
-            Node *temp = root->left;
-            free(root);
-            return temp;
-        } else if (root ->left == NULL) {
-            Node *temp = root->right;
-            free(root);
-            return temp;
+// deleting a node in the tree
+    Node *deleteNode(Node *root, int data) {
+        if (root == NULL) return root;
+        if (data > root->data) {
+            root->right = deleteNode(root->right,data);
+        } else if (data < root->data) {
+            root->left = deleteNode(root->left,data);
+        } else {
+            if (root->right == NULL) {
+                Node *temp = root->left;
+                free(root);
+                return temp;
+            } else if (root ->left == NULL) {
+                Node *temp = root->right;
+                free(root);
+                return temp;
+            }
+            // whenever we delete a node with two children,
+            // the smallest value from its right subtree is used to replace it
+            Node *temp = minValue(root->right);
+            root->data = temp->data;
+            root->right = deleteNode(root->right, temp->data);
         }
-        Node *temp = minValue(root->right);
-        root->data = temp->data;
-        root->right = deleteNode(root->right, temp->data);
+        return root;
     }
-    return root;
-}
 
-bool searchNode(Node *root, int data) {
-    if (root == NULL) return false;
-    if (root->data == data) return true;
+    // looking whether a node exists in the bst
+    bool searchNode(Node *root, int data) {
+        if (root == NULL) return false;
+        if (root->data == data) return true;
 
-    bool leftSubtree = searchNode(root->left, data);
-    if(leftSubtree) return true;
- 
-    bool rightSubtree = searchNode(root->right, data);
-    return rightSubtree;
-}
-
-
-void inorderTraversal(Node *root) {
-    if (root != NULL) {
-        inorderTraversal(root->left);
-        cout << root->data << " -> ";
-        inorderTraversal(root->right); 
+        bool leftSubtree = searchNode(root->left, data);
+        if(leftSubtree) return true;
+    
+        bool rightSubtree = searchNode(root->right, data);
+        return rightSubtree;
     }
-}
 
-void postorderTraversal(Node *root) {
-    if (root != NULL) {
-        postorderTraversal(root->left);
-        postorderTraversal(root->right); 
-        cout << root->data << " -> ";
+    //  All three traversals
+    void inorderTraversal(Node *root) {
+        if (root != NULL) {
+            inorderTraversal(root->left);
+            cout << root->data << " -> ";
+            inorderTraversal(root->right); 
+        }
     }
-}
 
-void preorderTraversal(Node *root) {
-    if (root != NULL) {
-        cout << root->data << " -> ";
-        preorderTraversal(root->left);
-        preorderTraversal(root->right); 
+    void postorderTraversal(Node *root) {
+        if (root != NULL) {
+            postorderTraversal(root->left);
+            postorderTraversal(root->right); 
+            cout << root->data << " -> ";
+        }
     }
-}
 
+    void preorderTraversal(Node *root) {
+        if (root != NULL) {
+            cout << root->data << " -> ";
+            preorderTraversal(root->left);
+            preorderTraversal(root->right); 
+        }
+    }
+
+// writing some basic driver code to make the code interactive and menu driven
 int main() {
     Node *root = new Node();
     int rootData;
