@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+// using selection sort to sort the given vector
+// the vector b is also passed as both the vectors need to be in sync with one another
 void selectionSort(vector<int>& a , vector<int>& b) {
     for (int i = 0; i < a.size(); i++ ){
         auto min = a.at(i);
@@ -16,6 +18,7 @@ void selectionSort(vector<int>& a , vector<int>& b) {
 }
 
 int main() {
+    // Driver code
     auto numberOfMeetings = 0, temp = 0, temp2 = 0;
     vector<int> startTime, finishTime;
     vector<pair<int, int>> meetingCombinations;
