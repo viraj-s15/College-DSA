@@ -58,3 +58,9 @@ int main() {
     std::cout << "Total Profit:" << output;
     return 0;
 }
+
+
+// Output in the form of :
+// A 001
+// B 010
+// C 0011
