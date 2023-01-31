@@ -3,13 +3,6 @@
 
 using namespace std;
 
-template<typename T>
-void printVector(vector<T> v) {
-    for (auto const& i : v) {
-        cout << i << " ";
-    }
-}
-
 void naiveStringMatching(string str1,string str2) { 
     int l1 = str1.length();
     int l2 = str2.length(); 
