@@ -44,8 +44,4 @@ int main() {
   string pattern = "0001";
   kmp_matcher(text, pattern);
   return 0;
-
-  kmp_matcher(text, pattern);
-
-  return 0;
 }
